@@ -2,17 +2,24 @@
 
 //Complete this algo
 const isLoop = (linkedlist) => {
-	let firstNode = linkedlist.head
-	let secondNode = firstNode.next;
-	while(firstNode !== secondNode){
-		if(firstNode === null || secondNode === null){
-			return false
-		}
-		firstNode = firstNode.next
-		secondNode = secondNode.next.next
+  let first = linkedlist.head;
+  let second = linkedlist.head;
 
-	}
-	return true
+  // check if the LL is empty or only has 1 node:
+  if(!first || !first.next) return false;
+
+  // traverse remainder of list:
+  while(second && second.next) {
+    first = first.next;
+    second = second.next.next;
+    if(first === second) {
+      return true;
+    }
+  }
+
+  // if we got to this point, we got to the end
+  // of the LL and didn't find a loop
+  return false;
 };
 
 
